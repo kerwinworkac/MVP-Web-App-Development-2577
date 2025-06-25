@@ -3,6 +3,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { QuestProvider } from '@questlabs/react-sdk';
 import '@questlabs/react-sdk/dist/style.css';
+
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
@@ -10,6 +11,7 @@ import Users from './pages/Users';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
 import Profile from './pages/Profile';
+import RoleManagement from './pages/RoleManagement';
 import HelpHub from './components/HelpHub';
 import Notification from './components/Notification';
 import { useNotification } from './hooks/useNotification';
@@ -28,12 +30,17 @@ function App() {
     >
       <Router>
         <div className="flex h-screen bg-gray-50">
-          <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+          <Sidebar
+            isOpen={sidebarOpen}
+            onClose={() => setSidebarOpen(false)}
+          />
+          
           <div className="flex-1 flex flex-col overflow-hidden">
-            <Header 
+            <Header
               onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
               showNotification={showNotification}
             />
+            
             <motion.main
               className="flex-1 overflow-y-auto p-6"
               initial={{ opacity: 0, y: 20 }}
@@ -43,16 +50,18 @@ function App() {
               <Routes>
                 <Route path="/" element={<Dashboard showNotification={showNotification} />} />
                 <Route path="/users" element={<Users showNotification={showNotification} />} />
+                <Route path="/roles" element={<RoleManagement showNotification={showNotification} />} />
                 <Route path="/analytics" element={<Analytics showNotification={showNotification} />} />
                 <Route path="/settings" element={<Settings showNotification={showNotification} />} />
                 <Route path="/profile" element={<Profile showNotification={showNotification} />} />
               </Routes>
             </motion.main>
           </div>
+          
           <HelpHub />
-          <Notification 
-            notification={notification} 
-            onClose={() => showNotification(null)} 
+          <Notification
+            notification={notification}
+            onClose={() => showNotification(null)}
           />
         </div>
       </Router>

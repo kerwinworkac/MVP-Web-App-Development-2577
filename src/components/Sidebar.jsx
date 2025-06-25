@@ -4,12 +4,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { FiHome, FiUsers, FiBarChart3, FiSettings, FiUser, FiX } = FiIcons;
+const { FiHome, FiUsers, FiBarChart3, FiSettings, FiUser, FiX, FiShield } = FiIcons;
 
 const Sidebar = ({ isOpen, onClose }) => {
   const menuItems = [
     { name: 'Dashboard', path: '/', icon: FiHome },
     { name: 'Users', path: '/users', icon: FiUsers },
+    { name: 'Roles', path: '/roles', icon: FiShield },
     { name: 'Analytics', path: '/analytics', icon: FiBarChart3 },
     { name: 'Settings', path: '/settings', icon: FiSettings },
     { name: 'Profile', path: '/profile', icon: FiUser },
@@ -41,8 +42,8 @@ const Sidebar = ({ isOpen, onClose }) => {
       >
         <div className="flex items-center justify-between p-6 lg:justify-start">
           <div>
-            <h1 className="text-2xl font-bold text-gray-800">MVP App</h1>
-            <p className="text-sm text-gray-600 mt-1">Dashboard v1.0</p>
+            <h1 className="text-2xl font-bold text-gray-800">Role Manager</h1>
+            <p className="text-sm text-gray-600 mt-1">Supabase Edition</p>
           </div>
           <button
             onClick={onClose}
@@ -51,7 +52,7 @@ const Sidebar = ({ isOpen, onClose }) => {
             <SafeIcon icon={FiX} className="w-6 h-6" />
           </button>
         </div>
-        
+
         <nav className="mt-6">
           {menuItems.map((item) => (
             <NavLink
@@ -69,6 +70,18 @@ const Sidebar = ({ isOpen, onClose }) => {
             </NavLink>
           ))}
         </nav>
+
+        <div className="absolute bottom-6 left-6 right-6">
+          <div className="bg-blue-50 rounded-lg p-4">
+            <div className="flex items-center space-x-3">
+              <SafeIcon icon={FiShield} className="w-6 h-6 text-blue-600" />
+              <div>
+                <h3 className="text-sm font-semibold text-blue-900">Supabase Powered</h3>
+                <p className="text-xs text-blue-700">Real-time role management</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </motion.div>
     </>
   );
